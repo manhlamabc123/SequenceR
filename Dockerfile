@@ -1,5 +1,4 @@
-# docker build -t ubuntu1604py36
-FROM ubuntu:16.04
+FROM ubuntu:18.04
 
 RUN apt-get update
 
@@ -22,7 +21,7 @@ RUN apt-get install -y python3-pip
 RUN echo debconf shared/accepted-oracle-license-v1-1 select true | debconf-set-selections
 RUN echo debconf shared/accepted-oracle-license-v1-1 seen true | debconf-set-selections
 
-RUN apt-get install -y python-software-properties
+# RUN apt-get install -y python-software-properties
 # RUN apt-get install -y default-jre
 # RUN apt-get install -y default-jdk
 RUN add-apt-repository ppa:openjdk-r/ppa
@@ -38,17 +37,3 @@ RUN update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.6 2
 WORKDIR /SequenceR
 
 COPY . /SequenceR
-
-RUN pip3 install --upgrade pip==19.1
-RUN /SequenceR/src/setup_env.sh
-ENV data_path=/SequenceR/data
-ENV OpenNMT_py=/SequenceR/src/lib/OpenNMT-py
-
-RUN apt-get install -y libcam-pdf-perl
-ENV PERL_MM_USE_DEFAULT 1
-
-RUN git clone https://github.com/rjust/defects4j /SequenceR/src/lib/defects4j
-RUN cpan App::cpanminus
-RUN cpanm --installdeps /SequenceR/src/lib/defects4j/
-RUN /SequenceR/src/lib/defects4j/init.sh
-ENV PATH="${PATH}:/SequenceR/src/lib/defects4j/framework/bin"
