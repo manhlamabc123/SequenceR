@@ -7,6 +7,9 @@ src/Buggy_Context_Abstraction/abstraction/.settings/
 src/Continuous_Learning/Defects4J_patches/*
 src/Continuous_Learning/models/*
 __pycache__/
+data/preprocess.out
+data/train.final.out
+data/train.out
 
 # python envs
 venv/
