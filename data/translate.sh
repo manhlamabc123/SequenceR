@@ -1,7 +1,7 @@
 #! /bin/bash
 
 cd $OpenNMT_py
-python translate.py \
+python3 translate.py \
 	-model $data_path/final-model_step_20000.pt \
 	-src $data_path/src-test.txt \
 	-beam_size 50 \
